@@ -19,8 +19,8 @@ WORKDIR /opt
 # Copy only dependency manifest files to leverage Docker cache
 # When these files don't change, Docker will reuse the cached dependency layer
 # Detected dependency files for: go
-COPY go.mod ./
-COPY go.sum ./
+COPY custom/go.mod ./
+COPY custom/go.sum ./
 
 # Copy build scripts needed for dependency installation
 # Note: CI_SCRIPT_DIR is relative to project root, will be at /opt/.tad/build/custom-otlp-collector in container

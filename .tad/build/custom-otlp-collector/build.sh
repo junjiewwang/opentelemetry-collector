@@ -83,6 +83,7 @@ echo "Executing build commands..."
 cd ${PROJECT_ROOT}
 echo "Build stage"
 cd ./custom
+go mod tidy
 CGO_ENABLED=0 go build -ldflags="-s -w" -o ${BUILD_OUTPUT_DIR}/bin/${SERVICE_NAME} ./cmd/customcol
 
 [ $? -ne 0 ] && echo "ERROR: Build commands failed" && exit 1

@@ -1,5 +1,5 @@
 # Auto-generated docker-compose.yaml
-# Generated at: 2025-12-29T17:37:01+08:00
+# Generated at: 2025-12-30T15:58:57+08:00
 
 services:
   custom-otlp-collector:
@@ -22,9 +22,10 @@ services:
     ports:
       - "4317"
       - "4318"
+      - "8080"
     environment:
-      - LOG_LEVEL=info
       - GO_ENV=production
+      - LOG_LEVEL=info
     volumes:
       - ./custom/config/build/config.yaml:/usr/local/services/custom-otlp-collector/config.yaml
     deploy:

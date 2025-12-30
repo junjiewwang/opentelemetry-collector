@@ -37,11 +37,16 @@ service:
     protocol: TCP
     expose: true
     description: "grpc port"
-  - name: grpc
+  - name: http
     port: 4318
     protocol: TCP
     expose: true
     description: "HTTP API port"
+  - name: http
+    port: 8080
+    protocol: TCP
+    expose: true
+    description: "Admin API port"
 
   # 服务部署目录
   # 默认值：/usr/local/services
@@ -97,12 +102,12 @@ build:
   # 默认情况下无需配置此字段，工具会自动检测
   # 仅当需要自定义依赖文件列表时才需要配置：
   #
-  # dependency_files:
-  #   auto_detect: false
-  #   files:
-  #     - requirements.txt
-  #     - requirements-dev.txt
-  #     - custom-deps.txt
+  dependency_files:
+    auto_detect: false
+    files:
+      - custom/go.mod
+      - custom/go.sum
+
 
   # 构建基础镜像（引用 base_images 中的预设）
   # 使用 @category.name 格式引用预设镜像
@@ -152,6 +157,7 @@ build:
     build: |
       echo "Build stage"
       cd ./custom
+      go mod tidy
       CGO_ENABLED=0 go build -ldflags="-s -w" -o ${BUILD_OUTPUT_DIR}/bin/${SERVICE_NAME} ./cmd/customcol
 
     post_build: |
