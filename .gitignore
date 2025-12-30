@@ -37,3 +37,6 @@ go.work*
 node_modules/*
 package-lock.json
 
+# custom
+.env.make
+k8s-manifests
