@@ -43,7 +43,7 @@ service:
     expose: true
     description: "HTTP API port"
   - name: http
-    port: 8080
+    port: 8088
     protocol: TCP
     expose: true
     description: "Admin API port"
